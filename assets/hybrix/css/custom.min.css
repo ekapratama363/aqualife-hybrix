@@ -1,0 +1,15 @@
+/* Nested submenu styling */
+.submenu-item .nav-link {
+    padding-left: 1rem;
+    font-size: 0.9em;
+}
+.submenu-dropdown .nav-link {
+    padding-left: 1.5rem;
+    font-size: 0.85em;
+}
+.submenu-dropdown.collapse {
+    margin-left: 0.5rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/*# sourceMappingURL=custom.min.css.map */
