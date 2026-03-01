@@ -306,10 +306,6 @@
                                         class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'adventage' ? 'active' : '' ?>">Our adventage</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('backend/ro_drinking_water/product_image') ?>" 
-                                        class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_image' ? 'active' : '' ?>">Product image</a>
-                                </li>
-                                <li class="nav-item">
                                     <a href="#sidebarProdDesc" class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' ? 'active' : '' ?>" 
                                         data-bs-toggle="collapse" role="button" 
                                         aria-expanded="<?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' ? 'true' : 'false' ?>" 
@@ -333,16 +329,22 @@
                                         </ul>
                                     </div>
                                 </li>
+                                <?php $catDescActive = $seg2 == 'ro_drinking_water' && in_array($seg3, ['category_description', 'product_image']); ?>
                                 <li class="nav-item">
-                                    <a href="#sidebarCatDesc" class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'active' : '' ?>" 
+                                    <a href="#sidebarCatDesc" class="nav-link <?= $catDescActive ? 'active' : '' ?>" 
                                         data-bs-toggle="collapse" role="button" 
-                                        aria-expanded="<?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'true' : 'false' ?>" 
+                                        aria-expanded="<?= $catDescActive ? 'true' : 'false' ?>" 
                                         aria-controls="sidebarCatDesc">
                                         Category description
                                     </a>
-                                    <div class="collapse menu-dropdown <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'show' : '' ?>" id="sidebarCatDesc">
+                                    <div class="collapse menu-dropdown <?= $catDescActive ? 'show' : '' ?>" id="sidebarCatDesc">
                                         <ul class="nav nav-sm flex-column">
-                                            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                            <li class="nav-item">
+                                                <a href="<?= base_url('backend/ro_drinking_water/product_image') ?>" 
+                                                    class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_image' ? 'active' : '' ?>">
+                                                    Product image</a>
+                                            </li>
+                                            <?php for ($i = 1; $i <= 9; $i++) : ?>
                                             <li class="nav-item">
                                                 <a href="<?= base_url("backend/ro_drinking_water/category_description/$i") ?>" 
                                                     class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' && $seg4 == $i ? 'active' : '' ?>">
