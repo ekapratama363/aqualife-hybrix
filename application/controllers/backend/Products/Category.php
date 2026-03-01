@@ -156,12 +156,11 @@ class Category extends CI_Controller {
         }
     }
 
-    public function lists()
+    public function lists($slug = '')
     {
         $draw   = $this->input->post('draw');
         $start  = $this->input->post('start');
         $length = $this->input->post('length');
-        $slug = $this->input->get('slug');
 
         $search = strtolower($this->input->post('search')['value']);
         $orderColumn = isset($this->input->post('order')[0]['column']) ? $this->input->post('order')[0]['column'] : '';
