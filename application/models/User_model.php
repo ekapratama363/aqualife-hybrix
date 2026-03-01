@@ -2,12 +2,6 @@
 
 class user_model extends CI_Model
 {
-    CONST ROLE = [
-        'ADMIN' => 1,
-        'Petugas' => 2,
-        'Teknisi' => 3,
-    ];
-
     public function __construct()
     {
         $this->load->database();
@@ -18,106 +12,78 @@ class user_model extends CI_Model
         return $this->db->get_where('users', $data)->row_object(); 
     }
 
-    public function get_by_email_and_role($email, $roles_name)
-    {
-        return $this->db->where('email', $email)
-            ->select('users.*, roles.name as role_name')
-			->join('roles', 'users.id_role  = roles.id', 'left')
-            ->where_in('roles.name', $roles_name)
-            ->where('users.is_not_active', null)
-            ->get('users')
-            ->row_object();
-    }
-
-    public function auth_role($data)
-    {
-        $data_roles = $this->db->get_where('roles', $data)->row_object(); 
-        return $data_roles;
-    }
-
-    public function get_petugas($data = NULL)
+    private function base_query($select, $data)
     {
         $match = isset($data['search']) ? $data['search'] : '';
         
-        $query = $this->db->where('(email LIKE \'%'.$match.'%\')')
-                ->where('id_role = 2')
-                ->order_by('id', isset($data['order']) ? 'desc' : 'asc');
-                
-        if(isset($data['length']) && isset($data['start'])) {
-            $query = $query->limit($data['length'], $data['start']);
-        }
+        $query = $this->db
+            ->select($select)
+            ->where('(name LIKE \'%'.$match.'%\' 
+                or email LIKE \'%'.$match.'%\')');
 
-        $query = $query->get('users');
-
-        return $query->result_object();
-    }
-    
-    public function get_teknisi($data = NULL)
-    {
-        $match = isset($data['search']) ? $data['search'] : '';
-        
-        $query = $this->db->where('(email LIKE \'%'.$match.'%\')')
-                ->where('id_role = 3')
-                ->order_by('id', isset($data['order']) ? 'desc' : 'asc');
-                
-        if(isset($data['length']) && isset($data['start'])) {
-            $query = $query->limit($data['length'], $data['start']);
-        }
-
-        $query = $query->get('users');
-
-        return $query->result_object();
+        return $query;
     }
 
-    public function set_data($data) 
+    public function create_data($data)
     {
-        return $this->db->insert('users', $data);
-    }
-
-    public function get_by_id($id)
-    {
-        return $this->db->get_where('users', ['id' => $id])->row_object();
+        $this->db->insert('users', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
 
     public function update_by_id($id, $data)
     {
-        return $this->db->where('id', $id)->update('users', $data);
+        return $this->db
+            ->where('id', $id)
+            ->update('users', $data);
     }
 
-    public function get_petugas_active($data = NULL)
+    public function get_data($limit = NULL, $start = NULL, $data = NULL)
     {
-        $match = isset($data['search']) ? $data['search'] : '';
-        
-        $query = $this->db->where('(email LIKE \'%'.$match.'%\')')
-                ->where('id_role = 2')
-                ->where('is_not_active IS NULL')
-                ->order_by('id', isset($data['order']) ? 'desc' : 'asc');
-                
-        if(isset($data['length']) && isset($data['start'])) {
-            $query = $query->limit($data['length'], $data['start']);
+        return $this->base_query('id, name, email', $data)
+            ->order_by($data['sort_field'], isset($data['order']) ? $data['order'] : 'desc')
+            ->limit($limit, $start)
+            ->get('users')
+            ->result_object();
+    }
+
+    public function count_data($data = NULl)
+    {
+        return $this->base_query('COUNT(users.id) as total', $data)
+            ->get('users')
+            ->row_object();
+    }
+
+    public function get_by_id($id)
+    {
+        return $this->db
+                ->select('users.*')
+                ->from('users')
+                ->where('users.id', $id)
+                ->get()
+                ->row_object();
+    }
+    
+    public function delete_by_id($id)
+    {
+        return $this->db->where('id', $id)->delete('users');
+    }
+
+    public function email_check($id)
+    {
+        $exists = $this->db
+            ->where('id !=', $id) // abaikan user yang sedang diedit
+            ->get('users')
+            ->row();
+
+        if ($exists) {// inilah bagian penting ðŸ‘‡
+            $this->form_validation->set_message(
+                'email_check',
+                'Email sudah digunakan user lain.'
+            );
+            return false;
         }
 
-        $query = $query->get('users');
-
-        return $query->result_object();
+        return true;
     }
-
-    public function get_teknisi_active($data = NULL)
-    {
-        $match = isset($data['search']) ? $data['search'] : '';
-        
-        $query = $this->db->where('(email LIKE \'%'.$match.'%\')')
-                ->where('id_role = 3')
-                ->where('is_not_active IS NULL')
-                ->order_by('id', isset($data['order']) ? 'desc' : 'asc');
-                
-        if(isset($data['length']) && isset($data['start'])) {
-            $query = $query->limit($data['length'], $data['start']);
-        }
-
-        $query = $query->get('users');
-
-        return $query->result_object();
-    }
-
 }

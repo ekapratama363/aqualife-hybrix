@@ -114,6 +114,25 @@ $route['backend/(:any)/product_description/(:num)/update_or_create']
 // $route['backend/(:any)/product_description/(:any)/(:any)'] = 'backend/Products/product_description/$1/$2/$3';
 // $route['backend/(:any)/product_description/(:any)/(:any)/(:any)'] = 'backend/Products/product_description/$1/$2/$3/$4';
 
+// category_description
+$route['backend/(:any)/category_description/(:num)']
+    = 'backend/Products/Category_description/index/$1/$2';
+
+$route['backend/(:any)/category_description/(:num)/lists']
+    = 'backend/Products/Category_description/lists/$1/$2';
+
+$route['backend/(:any)/category_description/(:num)/create']
+    = 'backend/Products/Category_description/create/$1/$2';
+
+$route['backend/(:any)/category_description/(:num)/edit/(:num)']
+    = 'backend/Products/Category_description/edit/$1/$2/$3';
+
+$route['backend/(:any)/category_description/(:num)/delete/(:num)']
+    = 'backend/Products/Category_description/delete/$1/$2/$3';
+
+$route['backend/(:any)/category_description/(:num)/update_or_create']
+    = 'backend/Products/Category_description/update_or_create/$1/$2';
+
 $route['backend/(:any)/news'] = 'backend/news/index/$1';
 $route['backend/(:any)/news/(:any)'] = 'backend/news/$2/$1';
 $route['backend/(:any)/news/(:any)/(:any)'] = 'backend/news/$2/$1/$3';

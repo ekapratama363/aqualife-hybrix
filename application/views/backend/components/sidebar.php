@@ -35,6 +35,7 @@
         <ul class="navbar-nav" id="navbar-nav">
             <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Menu</span></li>
 
+            <!-- HOME -->
             <li class="nav-item">
                 <a class="nav-link menu-link collapsed <?= $seg2 == 'home' ? 'active' : '' ?>" 
                     href="#home" 
@@ -42,47 +43,39 @@
                     role="button" 
                     aria-expanded="false"
                     aria-controls="home">
-                    
                     <i class="bi bi-radioactive"></i> <span data-key="home">Home</span>
                 </a>
-                <div class="collapse menu-dropdown mega-dropdown-menu  <?= $seg2 == 'home' ? 'show' : '' ?>" id="home">
+                <div class="collapse menu-dropdown mega-dropdown-menu <?= $seg2 == 'home' ? 'show' : '' ?>" id="home">
                     <div class="row">
                         <div class="col-lg-4">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/banner_header') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'banner_header' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Banner Header</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'banner_header' ? 'active' : '' ?>">Banner Header</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/about') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'about' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">About</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'about' ? 'active' : '' ?>">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/our_service') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'our_service' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Our Service</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'our_service' ? 'active' : '' ?>">Our Service</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/review') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'review' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Review</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'review' ? 'active' : '' ?>">Review</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/faqs') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'faqs' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Faqs</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'faqs' ? 'active' : '' ?>">Faqs</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/consultation') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'consultation' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Consultation</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'consultation' ? 'active' : '' ?>">Consultation</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/home/subscribe') ?>" 
-                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'subscribe' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Subscribed</a>
+                                        class="nav-link <?= $seg2 == 'home' && $seg3 == 'subscribe' ? 'active' : '' ?>">Subscribed</a>
                                 </li>
                             </ul>
                         </div>
@@ -90,6 +83,7 @@
                 </div>
             </li>
 
+            <!-- NEWS -->
             <li class="nav-item">
                 <a class="nav-link menu-link collapsed <?= $seg2 == 'news' ? 'active' : '' ?>" 
                     href="#news" 
@@ -97,22 +91,19 @@
                     role="button" 
                     aria-expanded="false"
                     aria-controls="news">
-                    
                     <i class="bi bi-radioactive"></i> <span data-key="News">News</span>
                 </a>
-                <div class="collapse menu-dropdown mega-dropdown-menu  <?= $seg2 == 'news' ? 'show' : '' ?>" id="news">
+                <div class="collapse menu-dropdown mega-dropdown-menu <?= $seg2 == 'news' ? 'show' : '' ?>" id="news">
                     <div class="row">
                         <div class="col-lg-4">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/news/banner_header') ?>" 
-                                        class="nav-link <?= $seg2 == 'news' && $seg3 == 'banner_header' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Banner Header</a>
+                                        class="nav-link <?= $seg2 == 'news' && $seg3 == 'banner_header' ? 'active' : '' ?>">Banner Header</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/news/news') ?>" 
-                                        class="nav-link <?= $seg2 == 'news' && $seg3 == 'news' ? 'active' : '' ?>" 
-                                        data-key="t-alerts">Post News</a>
+                                        class="nav-link <?= $seg2 == 'news' && $seg3 == 'news' ? 'active' : '' ?>">Post News</a>
                                 </li>
                             </ul>
                         </div>
@@ -120,8 +111,9 @@
                 </div>
             </li>
 
+            <!-- WATER TREATMENT PLANT -->
             <?php 
-            $wtp_subs = $subcategories_by_slug['water_treatment_plant'] ?? [];
+            $wtp_subs     = $subcategories_by_slug['water_treatment_plant'] ?? [];
             $wtp_expanded = $is_parent_expanded('water_treatment_plant', $wtp_subs);
             ?>
             <li class="nav-item">
@@ -195,8 +187,9 @@
                 </div>
             </li>
 
+            <!-- WATER SOFTENER -->
             <?php 
-            $ws_subs = $subcategories_by_slug['water_softener'] ?? [];
+            $ws_subs     = $subcategories_by_slug['water_softener'] ?? [];
             $ws_expanded = $is_parent_expanded('water_softener', $ws_subs);
             ?>
             <li class="nav-item">
@@ -270,8 +263,9 @@
                 </div>
             </li>
 
+            <!-- RO-DRINKING WATER -->
             <?php 
-            $rodw_subs = $subcategories_by_slug['ro_drinking_water'] ?? [];
+            $rodw_subs     = $subcategories_by_slug['ro_drinking_water'] ?? [];
             $rodw_expanded = $is_parent_expanded('ro_drinking_water', $rodw_subs);
             ?>
             <li class="nav-item">
@@ -300,6 +294,10 @@
                                         class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'did_you_know' ? 'active' : '' ?>">Did you know</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="<?= base_url('backend/ro_drinking_water/did_you_know_point') ?>" 
+                                        class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'did_you_know_point' ? 'active' : '' ?>">Did you know point</a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="<?= base_url('backend/ro_drinking_water/benefit') ?>" 
                                         class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'benefit' ? 'active' : '' ?>">Benefit</a>
                                 </li>
@@ -310,6 +308,49 @@
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/ro_drinking_water/product_image') ?>" 
                                         class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_image' ? 'active' : '' ?>">Product image</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarProdDesc" class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' ? 'active' : '' ?>" 
+                                        data-bs-toggle="collapse" role="button" 
+                                        aria-expanded="<?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' ? 'true' : 'false' ?>" 
+                                        aria-controls="sidebarProdDesc">
+                                        Product description
+                                    </a>
+                                    <div class="collapse menu-dropdown <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' ? 'show' : '' ?>" id="sidebarProdDesc">
+                                        <ul class="nav nav-sm flex-column">
+                                            <?php for ($i = 1; $i <= 8; $i++) : ?>
+                                            <li class="nav-item">
+                                                <a href="<?= base_url("backend/ro_drinking_water/product_description/$i") ?>" 
+                                                    class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' && $seg4 == $i ? 'active' : '' ?>">
+                                                    Description <?= $i ?></a>
+                                            </li>
+                                            <?php endfor; ?>
+                                            <li class="nav-item">
+                                                <a href="<?= base_url('backend/ro_drinking_water/product_description/9') ?>" 
+                                                    class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'product_description' && $seg4 == '9' ? 'active' : '' ?>">
+                                                    Contact us image</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarCatDesc" class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'active' : '' ?>" 
+                                        data-bs-toggle="collapse" role="button" 
+                                        aria-expanded="<?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'true' : 'false' ?>" 
+                                        aria-controls="sidebarCatDesc">
+                                        Category description
+                                    </a>
+                                    <div class="collapse menu-dropdown <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' ? 'show' : '' ?>" id="sidebarCatDesc">
+                                        <ul class="nav nav-sm flex-column">
+                                            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                            <li class="nav-item">
+                                                <a href="<?= base_url("backend/ro_drinking_water/category_description/$i") ?>" 
+                                                    class="nav-link <?= $seg2 == 'ro_drinking_water' && $seg3 == 'category_description' && $seg4 == $i ? 'active' : '' ?>">
+                                                    Description <?= $i ?></a>
+                                            </li>
+                                            <?php endfor; ?>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('backend/ro_drinking_water/why_choose_us') ?>" 
@@ -351,6 +392,13 @@
                         </div>
                     </div>
                 </div>
+            </li>
+
+            <!-- USER -->
+            <li class="nav-item">
+                <a class="nav-link menu-link <?= $seg2 == 'user' ? 'active' : '' ?>" href="<?= base_url('backend/user') ?>">
+                    <i class="bi bi-person"></i> <span data-key="t-user">User</span>
+                </a>
             </li>
 
         </ul>

@@ -95,6 +95,18 @@ class Category_model extends CI_Model
     }
 
     /**
+     * Get all categories for select2 dropdown (no restrictions)
+     */
+    public function get_for_select($search = '')
+    {
+        $query = $this->db->select('id, name')->from('categories');
+        if ($search) {
+            $query->like('name', $search);
+        }
+        return $query->order_by('name', 'ASC')->get()->result_object();
+    }
+
+    /**
      * Get parent categories (root level, category_id IS NULL)
      */
     public function get_parents()
