@@ -26,13 +26,13 @@
 
             <div class="form-group">
               <div class="mb-3">
-                <label for="level">Product</label>
-                <select name="product_id" id="product_id" class="form-control" multiple>
-                  <?php if (isset($data->p_name)) : ?>
-                    <option value="<?= $data->product_id ?>" selected><?= $data->p_name ?></option>
+                <label for="category_id">Category</label>
+                <select name="category_id" id="category_id" class="form-control" multiple>
+                  <?php if (isset($data->c_name)) : ?>
+                    <option value="<?= $data->category_id ?>" selected><?= $data->c_name ?></option>
                   <?php endif ?>
                 </select>
-                <b class="text-danger" id="product_id_error"></b>
+                <b class="text-danger" id="category_id_error"></b>
               </div>
             </div>
 
@@ -44,7 +44,6 @@
                 <b class="text-danger" id="images_error"></b>
                 
                 <ul id="file-list"></ul>
-
               </div>
             </div>
 

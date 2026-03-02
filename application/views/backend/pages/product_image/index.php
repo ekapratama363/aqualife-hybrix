@@ -18,7 +18,7 @@
                         <tr>
                             <th style="width: 5%">No</th>
                             <th>Title</th>
-                            <th>Product</th>
+                            <th>Category</th>
                             <th>Description</th>
                             <th>Image</th>
                             <th>Action</th>

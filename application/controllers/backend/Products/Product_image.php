@@ -54,7 +54,7 @@ class Product_image extends CI_Controller {
     public function update_or_create()
     {
         $this->form_validation->set_rules('title', 'title', 'required');
-        $this->form_validation->set_rules('product_id', 'product_id', 'required');
+        $this->form_validation->set_rules('category_id', 'category_id', 'required');
         $this->form_validation->set_rules('description', 'description', 'required');
 
         $id = $this->input->post('id');
@@ -112,10 +112,10 @@ class Product_image extends CI_Controller {
         }
 
         $data = [
-            'title' => $this->input->post('title'),
+            'title'       => $this->input->post('title'),
             'description' => $this->input->post('description'),
-            'product_id' => $this->input->post('product_id'),
-            'images' => $upload ? basename($upload['message']) : $this->input->post('image_name')
+            'category_id' => $this->input->post('category_id'),
+            'images'      => $upload ? basename($upload['message']) : $this->input->post('image_name')
         ];
 
         

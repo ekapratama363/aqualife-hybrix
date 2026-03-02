@@ -5,10 +5,10 @@ $(document).ready(function () {
 
 	table();
 
-	products("product_id", "", "Select Products", "");
+	categories("category_id", "", "Select Category", "");
 });
 
-function products(
+function categories(
 	id,
 	level = "",
 	placeholder = "Pilih Kategori",
@@ -24,10 +24,13 @@ function products(
 		allowClear: true,
 		multiple: false,
 		ajax: {
-			url: `${baseUrl}/product/list`,
+			url: `${baseUrl}/category/list`,
 			dataType: "json",
 			type: "GET",
 			delay: 250,
+			data: function (params) {
+				return { q: params.term || "" };
+			},
 			processResults: function (data) {
 				return {
 					results: $.map(data, function (item) {
@@ -57,7 +60,7 @@ function table() {
 		columns: [
 			{ data: "no" },
 			{ data: "title" },
-			{ data: "p_name" },
+			{ data: "c_name" },
 			{ data: "description" },
 			{ data: "images" },
 			{ data: "action" },
@@ -73,16 +76,16 @@ function submitData() {
 	$("#error-message").html("");
 	$("#success-message").html("");
 
-	let form = $("#form-data")[0]; // Ambil elemen form
-	let formData = new FormData(form); // Buat objek FormData
+	let form = $("#form-data")[0];
+	let formData = new FormData(form);
 
 	$.ajax({
 		url: `${beBaseUrl}/products/product_image/update_or_create`,
 		type: "POST",
 		data: formData,
 		dataType: "json",
-		processData: false, // Don't process the data
-		contentType: false, // Don't set content type
+		processData: false,
+		contentType: false,
 		success: function (response) {
 			if (response.status) {
 				window.location.href = response.redirect_url;
@@ -92,7 +95,7 @@ function submitData() {
 			$("#btn-submit").html("Submit");
 		},
 		error: function (xhr, status, error) {
-			$("[id$='_error']").text(""); // Menghapus teks error
+			$("[id$='_error']").text("");
 			$("#btn-submit").prop("disabled", false);
 			$("#btn-submit").html("Submit");
 
